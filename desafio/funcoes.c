@@ -11,7 +11,7 @@
 #define A6 0.0000735464
 #define A7 -4.22038e-7
 
-//implementação da função
+//calculo da função
 int funcao(int x, int b) {
     double y = A0 + (A1 + b) * x
            + A2 * pow(x, 2)
