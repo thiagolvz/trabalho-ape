@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 int main() {
-    // Declaração das variáveis de notas e flags
+    // Declaracao das variaveis de notas e flags
     float N1, N2, PPD, EU = 0, N3 = 0, notaFinal;
     int flagEU, flagN3;
 
 
-    // Lê e valida as notas
+    // Le e valida as notas
     printf("Digite a N1: ");
     scanf("%f", &N1);
     if (N1 < 0 || N1 > 4.5) {
@@ -61,16 +61,22 @@ int main() {
             return 3;
         }
     }
-
-    // Substitui a menor nota entre N1 e N2 pela N3, caso ela tenha sido feita
-    if (N1 < N2) {
-        N1 = N3;
-    } else {
-        N2 = N3;
-    }
-
+    
     // Ajuste para que a nota final fique no intervalo (0 - 10), caso necessário
     notaFinal = N1 + N2 + PPD + EU;
+
+    // Substitui a menor nota entre N1 e N2 pela N3, caso ela tenha sido feita
+    if(flagN3 == 1 && N1 <= N2){
+    	notaFinal = N3 + N2 + PPD;
+	}
+	else if(flagN3 == 1 && N2 <= N1){
+		notaFinal = N1 + N3 + PPD; 
+	}
+
+    //Adiciona o Exame Unificado a nota, caso tenho sido feito
+	if(flagEU == 1){
+		notaFinal += EU;
+	}
 
     if (notaFinal < 0) {
         notaFinal = 0;
@@ -78,9 +84,9 @@ int main() {
         notaFinal = 10;
     }
 
-    //Considerando a média 6, caso a nota final seja abaixo disso o aluno é reprovado.
+    //Considerando a média 7, caso a nota final seja abaixo disso o aluno é reprovado.
     printf("Nota final: %.2f\n", notaFinal);
-    if (notaFinal >= 6) {
+    if (notaFinal >= 7) {
         printf("Aluno aprovado!");
     } else {
         printf("Aluno reprovado!\n");
